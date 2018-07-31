@@ -4,8 +4,7 @@ import pandas as pd
 from anytree import NodeMixin
 
 import treeModel.mathUtil as mathUtil
-from treeModel.baseModel import BaseTreeModel
-
+from treeModel.model.baseModel import BaseTreeModel
 
 class ID3Model(BaseTreeModel):
     

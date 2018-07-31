@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
 
-from treeModel.baseModel import BaseTreeModel
+from treeModel.model.baseModel import BaseTreeModel
 
 class CARTModel(BaseTreeModel):
     
