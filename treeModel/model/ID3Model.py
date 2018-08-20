@@ -3,7 +3,7 @@
 import pandas as pd
 from anytree import NodeMixin
 
-import treeModel.mathUtil as mathUtil
+from treeModel.mathUtil import informationEntropy
 from treeModel.model.baseModel import BaseTreeModel
 
 class ID3Model(BaseTreeModel):
@@ -37,7 +37,7 @@ class ID3Model(BaseTreeModel):
         # 得到所有属性标签
         attributes = data.drop(label, axis=1).columns
     
-        ent_d = mathUtil.informationEntropy(data[label])
+        ent_d = informationEntropy(data[label])
     
         # 遍历所有属性得到分裂点
         for attribute in attributes:
@@ -47,7 +47,7 @@ class ID3Model(BaseTreeModel):
                 gain = ent_d
                 for name, group in groups:
                     numInGroup = len(group)
-                    gain -= (numInGroup / totalData) * mathUtil.informationEntropy(group[label])
+                    gain -= (numInGroup / totalData) * informationEntropy(group[label])
                 if (splitAttribute == None and maxGain == None):
                     splitAttribute = attribute
                     maxGain = gain
@@ -63,8 +63,8 @@ class ID3Model(BaseTreeModel):
                     dataPartOne = data[data[attribute] <= value]
                     dataPartTwo = data[data[attribute] > value]
                     gain = ent_d
-                    DPartOne = mathUtil.informationEntropy(dataPartOne[label])
-                    DPartTwo = mathUtil.informationEntropy(dataPartTwo[label])
+                    DPartOne = informationEntropy(dataPartOne[label])
+                    DPartTwo = informationEntropy(dataPartTwo[label])
                     
                     gain = gain - len(dataPartOne)/len(data)*DPartOne - len(dataPartTwo)/len(data)*DPartTwo
 

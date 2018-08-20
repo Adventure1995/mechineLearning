@@ -21,6 +21,21 @@ def informationEntropy(label):
         
     return ent_D
 
+def gini(label):
+    '''
+    
+    :param label:
+    :return:
+    '''
+    total = len(label)
+    ret = 1
+    for classType in label.unique():
+        num = len(label.loc[label == classType])
+        p_k = num / total
+        ret = ret - p_k * p_k
+    
+    return ret
+    
 # test and examples
 # 西瓜样本，正样本8个(1表示)，负样本9个（0表示）
 def main():
